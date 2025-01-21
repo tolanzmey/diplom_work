@@ -34,9 +34,6 @@ module "anatol_eks" {
   cluster_version = "1.31"
   vpc_id          = aws_vpc.anatol_dev_vpc.id
   subnet_ids      = aws_subnet.anatol_dev_subnet[*].id
-
-  node_group_defaults = {
-    ami_type = "AL2_x86_64"
   }
 
   managed_node_groups = {
