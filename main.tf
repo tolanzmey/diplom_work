@@ -28,14 +28,20 @@ resource "aws_ecr_repository" "anatol_dev_repo" {
 }
 
 module "anatol_eks" {
-  source          = "terraform-aws-modules/eks/aws"
+  source  = "terraform-aws-modules/eks/aws"
+  version = "~> 19.0"
+
   cluster_name    = "anatol-dev-eks-cluster"
   cluster_version = "1.24"
-  subnets         = aws_subnet.anatol_dev_subnet[*].id
   vpc_id          = aws_vpc.anatol_dev_vpc.id
+  subnet_ids      = aws_subnet.anatol_dev_subnet[*].id
 
-  node_groups = {
-    anatol_dev_nodes = {
+  node_group_defaults = {
+    ami_type = "AL2_x86_64"
+  }
+
+  managed_node_groups = {
+    anatol_nodes = {
       desired_capacity = 2
       max_capacity     = 2
       min_capacity     = 2
