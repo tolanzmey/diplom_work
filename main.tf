@@ -1,11 +1,3 @@
-# Create a new directory for the project and initialize the Terraform configuration
-.
-├── main.tf          # Main terraform configuration
-├── variables.tf      # Input variables
-├── outputs.tf        # Output values
-├── backend.tf        # Backend configuration for storing the state file
-├── ci_pipeline.yaml  # CI/CD pipeline configuration for automatic deployment
-
 # main.tf
 provider "aws" {
   region = var.region
