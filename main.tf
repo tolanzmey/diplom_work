@@ -36,7 +36,7 @@ module "anatol_eks" {
   subnet_ids      = aws_subnet.anatol_dev_subnet[*].id
   }
 
-  managed_node_groups = {
+  self_managed_node_groups = {
     anatol_nodes = {
       desired_capacity = 2
       max_capacity     = 2
