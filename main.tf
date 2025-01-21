@@ -2,6 +2,10 @@ provider "aws" {
   region = var.region
 }
 
+data "aws_availability_zones" "available" {
+  state = "available"
+}
+
 resource "aws_vpc" "anatol_dev_vpc" {
   cidr_block = var.vpc_cidr
 
@@ -31,10 +35,9 @@ module "anatol_eks" {
   version = "20.33.0"
 
   cluster_name    = "anatol-dev-eks-cluster"
-  cluster_version = "1.31"
+  cluster_version = "1.31"  # Проверьте актуальную версию Kubernetes
   vpc_id          = aws_vpc.anatol_dev_vpc.id
   subnet_ids      = aws_subnet.anatol_dev_subnet[*].id
-  }
 
   self_managed_node_groups = {
     anatol_nodes = {
