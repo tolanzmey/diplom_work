@@ -35,7 +35,7 @@ module "anatol_eks" {
   version = "20.33.0"
 
   cluster_name    = "anatol-dev-eks-cluster"
-  cluster_version = "1.31"  # Проверьте актуальную версию Kubernetes
+  cluster_version = "1.31"
   vpc_id          = aws_vpc.anatol_dev_vpc.id
   subnet_ids      = aws_subnet.anatol_dev_subnet[*].id
 
